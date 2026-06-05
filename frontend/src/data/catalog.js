@@ -1,0 +1,252 @@
+export const imageSet = {
+  hero: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=2200&q=85',
+  consultation: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1400&q=85',
+  atelier: 'https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&w=1400&q=85',
+}
+
+export const heroBanners = [
+  {
+    image: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=2200&q=85',
+    title: 'Furnishings That Shape Beautiful Homes',
+    subtitle: 'Premium curtains, wallpapers, blinds, sofas and soft furnishings crafted for refined everyday living.',
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=2200&q=85',
+    title: 'Tailored Drapery for Every Window',
+    subtitle: 'Made-to-measure curtains and blinds finished with quiet detail, precise light control and premium installation.',
+  },
+  {
+    image: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=2200&q=85',
+    title: 'Rooms Styled from Fabric to Finish',
+    subtitle: 'Explore layered sofas, rugs, wallpapers and custom soft furnishing solutions for complete spaces.',
+  },
+]
+
+export const categories = [
+  { name: 'Curtains', text: 'Layered drapery, sheer panels and blackout finishes.', image: 'https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit=crop&w=900&q=85' },
+  { name: 'Blinds', text: 'Roman, roller and wooden blinds made to measure.', image: 'https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&w=900&q=85' },
+  { name: 'Wallpapers', text: 'Textured walls, muted prints and bespoke statements.', image: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=900&q=85' },
+  { name: 'Sofas', text: 'Tailored silhouettes in premium upholstery options.', image: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=900&q=85' },
+  { name: 'Rugs', text: 'Hand-tufted, woven and tonal rugs for every room.', image: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=900&q=85' },
+  { name: 'Bedding', text: 'Soft layers, cushions and refined bedroom styling.', image: 'https://images.unsplash.com/photo-1616627451515-cbc80e7ece35?auto=format&fit=crop&w=900&q=85' },
+  { name: 'Cushions', text: 'Accent cushions, bolsters and layered sofa styling.', image: 'https://images.unsplash.com/photo-1616486701797-0f33f61038ec?auto=format&fit=crop&w=900&q=85' },
+  { name: 'Throws', text: 'Soft seasonal layers in warm, tactile finishes.', image: 'https://images.unsplash.com/photo-1600121848594-d8644e57abab?auto=format&fit=crop&w=900&q=85' },
+]
+
+export const spaces = [
+  {
+    name: 'Living Room',
+    video: 'https://videos.pexels.com/video-files/7578549/7578549-hd_1920_1080_30fps.mp4',
+    poster: 'https://images.unsplash.com/photo-1618221118493-9cfa1a1c00da?auto=format&fit=crop&w=1100&q=85',
+  },
+  {
+    name: 'Bedroom',
+    video: 'https://videos.pexels.com/video-files/6587347/6587347-hd_1920_1080_25fps.mp4',
+    poster: 'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=1100&q=85',
+  },
+  {
+    name: 'Dining',
+    video: 'https://videos.pexels.com/video-files/6207497/6207497-hd_1920_1080_25fps.mp4',
+    poster: 'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=1100&q=85',
+  },
+  {
+    name: 'Office',
+    video: 'https://videos.pexels.com/video-files/7578552/7578552-hd_1920_1080_30fps.mp4',
+    poster: 'https://images.unsplash.com/photo-1616486029423-aaa4789e8c9a?auto=format&fit=crop&w=1100&q=85',
+  },
+  {
+    name: 'Hotels',
+    video: 'https://videos.pexels.com/video-files/3770033/3770033-hd_1920_1080_25fps.mp4',
+    poster: 'https://images.unsplash.com/photo-1617103996702-96ff29b1c467?auto=format&fit=crop&w=1100&q=85',
+  },
+]
+
+export const products = [
+  {
+    id: 'gid://shopify/Product/1001',
+    handle: 'aurelia-linen-curtain',
+    title: 'Aurelia Linen Curtain',
+    category: 'Curtains',
+    price: 6499,
+    material: 'Washed linen',
+    color: 'Oat',
+    room: 'Living Room',
+    style: 'Minimal',
+    available: true,
+    tags: ['Customisable', 'Premium Fabric', 'Installation Available'],
+    description: 'A softly textured made-to-measure curtain with a clean fall, warm handfeel and hotel-grade finishing.',
+    images: [
+      'https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit=crop&w=1100&q=85',
+      'https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1100&q=85',
+    ],
+    variants: [{ id: 'gid://shopify/ProductVariant/2001', title: 'Oat / Linen / Custom', price: 6499 }],
+  },
+  {
+    id: 'gid://shopify/Product/1002',
+    handle: 'noir-roman-blind',
+    title: 'Noir Roman Blind',
+    category: 'Blinds',
+    price: 5299,
+    material: 'Cotton blend',
+    color: 'Charcoal',
+    room: 'Bedroom',
+    style: 'Contemporary',
+    available: true,
+    tags: ['Customisable', 'Blackout Option'],
+    description: 'Structured roman blinds with crisp folds, smooth operation and refined light control.',
+    images: [
+      'https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&w=1100&q=85',
+      'https://images.unsplash.com/photo-1600210492493-0946911123ea?auto=format&fit=crop&w=1100&q=85',
+    ],
+    variants: [{ id: 'gid://shopify/ProductVariant/2002', title: 'Charcoal / Cotton Blend / Custom', price: 5299 }],
+  },
+  {
+    id: 'gid://shopify/Product/1003',
+    handle: 'calma-texture-wallpaper',
+    title: 'Calma Texture Wallpaper',
+    category: 'Wallpapers',
+    price: 3199,
+    material: 'Vinyl texture',
+    color: 'Taupe',
+    room: 'Dining',
+    style: 'Textured',
+    available: true,
+    tags: ['Premium Fabric', 'Washable'],
+    description: 'A warm neutral wallcovering with subtle texture for quiet, layered interiors.',
+    images: [
+      'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1100&q=85',
+      'https://images.unsplash.com/photo-1615874694520-474822394e73?auto=format&fit=crop&w=1100&q=85',
+    ],
+    variants: [{ id: 'gid://shopify/ProductVariant/2003', title: 'Taupe / Textured / Roll', price: 3199 }],
+  },
+  {
+    id: 'gid://shopify/Product/1004',
+    handle: 'marlow-modular-sofa',
+    title: 'Marlow Modular Sofa',
+    category: 'Sofas',
+    price: 74999,
+    material: 'Boucle upholstery',
+    color: 'Ivory',
+    room: 'Living Room',
+    style: 'Modern',
+    available: true,
+    tags: ['Customisable', 'Premium Fabric'],
+    description: 'A low, generous modular sofa with deep comfort and a tailored profile.',
+    images: [
+      'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=1100&q=85',
+      'https://images.unsplash.com/photo-1615873968403-89e068629265?auto=format&fit=crop&w=1100&q=85',
+    ],
+    variants: [{ id: 'gid://shopify/ProductVariant/2004', title: 'Ivory / Boucle / 3 Seater', price: 74999 }],
+  },
+  {
+    id: 'gid://shopify/Product/1005',
+    handle: 'sora-wool-rug',
+    title: 'Sora Wool Rug',
+    category: 'Rugs',
+    price: 18999,
+    material: 'Hand tufted wool',
+    color: 'Olive',
+    room: 'Bedroom',
+    style: 'Organic',
+    available: true,
+    tags: ['Premium Fabric'],
+    description: 'A soft hand-tufted rug with tonal depth and grounding warmth.',
+    images: [
+      'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1100&q=85',
+      'https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1100&q=85',
+    ],
+    variants: [{ id: 'gid://shopify/ProductVariant/2005', title: 'Olive / Wool / 6x9', price: 18999 }],
+  },
+  {
+    id: 'gid://shopify/Product/1006',
+    handle: 'sera-bedding-set',
+    title: 'Sera Bedding Set',
+    category: 'Bedding',
+    price: 8999,
+    material: 'Cotton sateen',
+    color: 'Soft Gold',
+    room: 'Bedroom',
+    style: 'Classic',
+    available: true,
+    tags: ['Customisable'],
+    description: 'Layered bedding with a smooth sateen finish, tonal cushions and quiet detailing.',
+    images: [
+      'https://images.unsplash.com/photo-1616627451515-cbc80e7ece35?auto=format&fit=crop&w=1100&q=85',
+      'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=1100&q=85',
+    ],
+    variants: [{ id: 'gid://shopify/ProductVariant/2006', title: 'Soft Gold / Sateen / King', price: 8999 }],
+  },
+]
+
+export const projects = [
+  { title: 'Walnut Apartment', type: 'Living Room Styling', image: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=900&q=85' },
+  { title: 'Calm City Bedroom', type: 'Curtains and Bedding', image: 'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=900&q=85' },
+  { title: 'Garden Villa', type: 'Wallpapers and Rugs', image: 'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=900&q=85' },
+  { title: 'Boutique Suite', type: 'Custom Soft Furnishing', image: 'https://images.unsplash.com/photo-1617103996702-96ff29b1c467?auto=format&fit=crop&w=900&q=85' },
+  { title: 'Editorial Dining', type: 'Blinds and Styling', image: 'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=900&q=85' },
+]
+
+export const styledHomeReviews = [
+  {
+    name: 'Walnut Apartment',
+    client: 'Naina Rao',
+    location: 'Worli',
+    stars: 5,
+    quote: 'The drapes changed the mood of the whole living room. Quiet, warm and beautifully finished.',
+    image: 'https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=900&q=85',
+  },
+  {
+    name: 'Calm City Bedroom',
+    client: 'Mira Kapoor',
+    location: 'Powai',
+    stars: 5,
+    quote: 'The team balanced blackout comfort with a very soft hotel-like look. The install was spotless.',
+    image: 'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=900&q=85',
+  },
+  {
+    name: 'Garden Villa',
+    client: 'Dev Arora',
+    location: 'Alibaug',
+    stars: 5,
+    quote: 'Wallpaper, rugs and cushions came together like a single design story, not separate shopping.',
+    image: 'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?auto=format&fit=crop&w=900&q=85',
+  },
+  {
+    name: 'Boutique Suite',
+    client: 'Rhea Shah',
+    location: 'Juhu',
+    stars: 5,
+    quote: 'Premium fabric choices, precise measurement and a final look that feels tailored to the room.',
+    image: 'https://images.unsplash.com/photo-1617103996702-96ff29b1c467?auto=format&fit=crop&w=900&q=85',
+  },
+]
+
+export const blogPosts = [
+  {
+    slug: 'choosing-curtains-for-soft-light',
+    title: 'Choosing Curtains for Soft, Layered Light',
+    excerpt: 'A practical guide to sheers, blackout linings and fabric weight for calmer rooms.',
+    category: 'Curtains',
+    readTime: '4 min read',
+    image: 'https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit=crop&w=1000&q=85',
+  },
+  {
+    slug: 'wallpaper-without-visual-noise',
+    title: 'Wallpaper Without Visual Noise',
+    excerpt: 'How to use texture, scale and muted color so a wall feels designed, not decorated.',
+    category: 'Wallpapers',
+    readTime: '5 min read',
+    image: 'https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1000&q=85',
+  },
+  {
+    slug: 'styling-sofas-with-rugs-and-cushions',
+    title: 'Styling Sofas with Rugs and Cushions',
+    excerpt: 'Simple proportion rules for pairing upholstery, rugs, cushions and throws.',
+    category: 'Furniture',
+    readTime: '3 min read',
+    image: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=1000&q=85',
+  },
+]
+
+export const formatPrice = (price) =>
+  new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(price)
