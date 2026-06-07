@@ -12,6 +12,11 @@ const emptyFilters = {
   style: [],
   availability: [],
 }
+const PAGE_SIZE = 24
+const departmentCategories = {
+  Furniture: ['Sofas', 'Rugs'],
+  'Home Decor': ['Curtains', 'Blinds', 'Wallpapers', 'Bedding', 'Cushions', 'Throws'],
+}
 
 export default function CollectionPage() {
   const [searchParams, setSearchParams] = useSearchParams()
@@ -19,7 +24,10 @@ export default function CollectionPage() {
   const [filtersOpen, setFiltersOpen] = useState(false)
   const [query, setQuery] = useState('')
   const [activeFilters, setActiveFilters] = useState(emptyFilters)
+  const [page, setPage] = useState(1)
   const activeCategory = searchParams.get('category') || ''
+  const activeDepartment = searchParams.get('department') || ''
+  const pageTitle = activeCategory || activeDepartment || 'Premium Furnishings'
 
   const visibleProducts = useMemo(() => {
     const searchTerm = query.trim().toLowerCase()
@@ -37,6 +45,7 @@ export default function CollectionPage() {
 
       return (
         (!activeCategory || product.category === activeCategory) &&
+        (!activeDepartment || departmentCategories[activeDepartment]?.includes(product.category)) &&
         (!searchTerm || searchable.includes(searchTerm)) &&
         matchesGroup(activeFilters.fabric, product.material) &&
         matchesGroup(activeFilters.color, product.color) &&
@@ -51,15 +60,23 @@ export default function CollectionPage() {
       if (sort === 'Price High to Low') return b.price - a.price
       return 0
     })
-  }, [activeCategory, activeFilters, query, sort])
+  }, [activeCategory, activeDepartment, activeFilters, query, sort])
+
+  const totalPages = Math.max(1, Math.ceil(visibleProducts.length / PAGE_SIZE))
+  const currentPage = Math.min(page, totalPages)
+  const paginatedProducts = visibleProducts.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE)
+  const firstVisible = visibleProducts.length ? (currentPage - 1) * PAGE_SIZE + 1 : 0
+  const lastVisible = Math.min(currentPage * PAGE_SIZE, visibleProducts.length)
 
   const setCategory = (category) => {
     if (category) setSearchParams({ category })
     else setSearchParams({})
+    setPage(1)
     setFiltersOpen(false)
   }
 
   const toggleFilter = (key, option) => {
+    setPage(1)
     setActiveFilters((current) => ({
       ...current,
       [key]: current[key].includes(option)
@@ -72,11 +89,13 @@ export default function CollectionPage() {
     setSearchParams({})
     setQuery('')
     setActiveFilters(emptyFilters)
+    setPage(1)
     setFiltersOpen(false)
   }
 
   const activeChips = [
     activeCategory,
+    activeDepartment,
     query ? `Search: ${query}` : '',
     ...Object.values(activeFilters).flat(),
   ].filter(Boolean)
@@ -92,7 +111,7 @@ export default function CollectionPage() {
         <div className="relative min-h-[280px] px-6 py-10 text-porcelain md:px-10">
           <div className="max-w-3xl">
             <p className="text-xs font-bold uppercase tracking-[0.2em] text-porcelain/75">Shop</p>
-            <h1 className="serif mt-3 text-6xl font-semibold leading-none md:text-7xl">{activeCategory || 'Premium Furnishings'}</h1>
+            <h1 className="serif mt-3 text-6xl font-semibold leading-none md:text-7xl">{pageTitle}</h1>
             <p className="mt-5 max-w-xl text-sm leading-7 text-porcelain/78">
               Search, filter and refine custom furnishing pieces for rooms with texture, proportion and detail.
             </p>
@@ -107,7 +126,10 @@ export default function CollectionPage() {
             <Search size={17} className="text-charcoal/45" />
             <input
               value={query}
-              onChange={(event) => setQuery(event.target.value)}
+              onChange={(event) => {
+                setQuery(event.target.value)
+                setPage(1)
+              }}
               placeholder="Search curtains, rugs, linen, olive..."
               className="min-w-0 flex-1 bg-transparent text-sm font-normal normal-case tracking-normal text-charcoal outline-none"
             />
@@ -122,7 +144,10 @@ export default function CollectionPage() {
             <SlidersHorizontal size={16} /> Filters
           </button>
           <div>
-            <p className="text-xs font-bold uppercase tracking-[0.18em] text-charcoal/50">{visibleProducts.length} pieces</p>
+            <p className="text-xs font-bold uppercase tracking-[0.18em] text-charcoal/50">
+              {visibleProducts.length} pieces
+              {visibleProducts.length > 0 && <span className="ml-2 text-charcoal/35">Showing {firstVisible}-{lastVisible}</span>}
+            </p>
             <div className="mt-2 flex flex-wrap gap-2">
               {activeChips.length ? activeChips.map((chip) => (
                 <span key={chip} className="border border-charcoal/20 bg-[#fbf8f2] px-3 py-2 text-xs uppercase tracking-[0.14em]">
@@ -133,7 +158,14 @@ export default function CollectionPage() {
           </div>
           <label className="grid gap-2 text-xs font-bold uppercase tracking-[0.16em] text-charcoal/50">
             Sort
-            <select value={sort} onChange={(event) => setSort(event.target.value)} className="min-w-[220px] border hairline bg-transparent px-4 py-3 text-sm font-normal normal-case tracking-normal text-charcoal">
+            <select
+              value={sort}
+              onChange={(event) => {
+                setSort(event.target.value)
+                setPage(1)
+              }}
+              className="min-w-[220px] border hairline bg-transparent px-4 py-3 text-sm font-normal normal-case tracking-normal text-charcoal"
+            >
               {['Featured', 'New Arrivals', 'Price Low to High', 'Price High to Low'].map((option) => <option key={option}>{option}</option>)}
             </select>
           </label>
@@ -151,7 +183,45 @@ export default function CollectionPage() {
           />
         </div>
         {visibleProducts.length ? (
-          <ProductGrid products={visibleProducts} variant="shop" />
+          <div>
+            <ProductGrid products={paginatedProducts} variant="shop" />
+            <div className="mt-10 flex flex-wrap items-center justify-between gap-4 border-t hairline pt-6">
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-charcoal/45">Page {currentPage} of {totalPages}</p>
+              <div className="flex items-center gap-2">
+                <button
+                  type="button"
+                  disabled={currentPage === 1}
+                  onClick={() => setPage((current) => Math.max(1, current - 1))}
+                  className="border hairline px-4 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-charcoal disabled:cursor-not-allowed disabled:opacity-35"
+                >
+                  Previous
+                </button>
+                {Array.from({ length: totalPages }).map((_, index) => {
+                  const pageNumber = index + 1
+                  return (
+                    <button
+                      key={pageNumber}
+                      type="button"
+                      onClick={() => setPage(pageNumber)}
+                      className={`grid h-11 w-11 place-items-center border hairline text-sm ${currentPage === pageNumber ? 'bg-charcoal text-porcelain' : 'text-charcoal'}`}
+                      aria-label={`Go to page ${pageNumber}`}
+                      aria-current={currentPage === pageNumber ? 'page' : undefined}
+                    >
+                      {pageNumber}
+                    </button>
+                  )
+                })}
+                <button
+                  type="button"
+                  disabled={currentPage === totalPages}
+                  onClick={() => setPage((current) => Math.min(totalPages, current + 1))}
+                  className="border hairline px-4 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-charcoal disabled:cursor-not-allowed disabled:opacity-35"
+                >
+                  Next
+                </button>
+              </div>
+            </div>
+          </div>
         ) : (
           <div className="grid min-h-[420px] place-items-center border hairline bg-[#fbf8f2] p-10 text-center">
             <div>

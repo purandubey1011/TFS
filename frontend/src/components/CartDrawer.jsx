@@ -1,11 +1,11 @@
 import { AnimatePresence, motion } from 'framer-motion'
-import { Minus, Plus, X } from 'lucide-react'
+import { Minus, Plus, ShoppingBag, X } from 'lucide-react'
 import { useStore } from '../context/useStore'
 import { formatPrice, products } from '../data/catalog'
 import CTAButton from './CTAButton'
 
 export default function CartDrawer() {
-  const { cartItems, cartOpen, setCartOpen, updateQuantity } = useStore()
+  const { addToCart, cartItems, cartOpen, setCartOpen, updateQuantity } = useStore()
   const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0)
 
   return (
@@ -57,9 +57,17 @@ export default function CartDrawer() {
                 <h3 className="serif text-2xl">Complete the Look</h3>
                 <div className="mt-4 grid grid-cols-2 gap-3">
                   {products.slice(4, 6).map((product) => (
-                    <div key={product.id} className="text-sm">
+                    <div key={product.id} className="flex flex-col text-sm">
                       <img src={product.images[0]} alt={product.title} className="aspect-square w-full object-cover" />
-                      <p className="mt-2">{product.title}</p>
+                      <p className="serif mt-2 text-lg font-semibold leading-tight">{product.title}</p>
+                      <p className="mt-1 text-xs text-charcoal/60">{formatPrice(product.price)}</p>
+                      <button
+                        type="button"
+                        onClick={() => addToCart(product)}
+                        className="mt-3 flex items-center justify-center gap-2 border hairline bg-charcoal px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.14em] text-porcelain"
+                      >
+                        <ShoppingBag size={13} /> Add
+                      </button>
                     </div>
                   ))}
                 </div>

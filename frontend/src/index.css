@@ -76,6 +76,52 @@ button {
   transform-origin: left;
 }
 
+.dropdown-link {
+  position: relative;
+  width: fit-content;
+}
+
+.dropdown-link::after {
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 100%;
+  height: 1px;
+  background: #1E1E1E;
+  content: "";
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 220ms ease;
+}
+
+.dropdown-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.blog-read-link {
+  background: transparent !important;
+  color: #6F563F !important;
+  position: relative;
+}
+
+.blog-read-link::after {
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 100%;
+  height: 1px;
+  background: currentColor;
+  content: "";
+  transform: scaleX(0.35);
+  transform-origin: left;
+  transition: transform 220ms ease;
+}
+
+.blog-read-link:hover::after {
+  transform: scaleX(1);
+}
+
 .nav-menu-group {
   position: relative;
 }
@@ -87,12 +133,11 @@ button {
   position: fixed;
   right: 0;
   top: 112px;
-  transform: translateY(8px);
-  transition: opacity 180ms ease, transform 180ms ease;
+  transform: translateY(6px);
+  transition: opacity 160ms ease, transform 160ms ease;
 }
 
-.nav-menu-group:hover .nav-menu-panel,
-.nav-menu-group:focus-within .nav-menu-panel {
+.nav-menu-panel.is-open {
   opacity: 1;
   pointer-events: auto;
   transform: translateY(0);
@@ -166,7 +211,28 @@ button {
   animation-play-state: paused;
 }
 
+.see-styled-ticker {
+  mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
+}
+
+.see-styled-track {
+  animation: seeStyledTicker 34s linear infinite;
+}
+
+.see-styled-ticker:hover .see-styled-track {
+  animation-play-state: paused;
+}
+
 @keyframes styledTicker {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-50% - 10px));
+  }
+}
+
+@keyframes seeStyledTicker {
   from {
     transform: translateX(0);
   }

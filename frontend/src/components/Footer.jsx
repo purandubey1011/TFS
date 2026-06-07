@@ -13,7 +13,7 @@ export default function Footer() {
             <button className="grid h-11 w-11 place-items-center border hairline" aria-label="WhatsApp"><MessageCircle size={17} /></button>
           </div>
         </div>
-        <FooterColumn title="Quick Links" links={['Home', 'Projects', 'About', 'Consultation']} />
+        <FooterColumn title="Quick Links" links={['Home', 'Projects', 'About', 'Consultation', 'Bulk Queries']} />
         <FooterColumn title="Categories" links={['Curtains', 'Blinds', 'Wallpapers', 'Sofas', 'Rugs', 'Bedding']} />
         <div>
           <h3 className="mb-4 text-xs font-bold uppercase tracking-[0.18em]">Newsletter</h3>
@@ -30,12 +30,18 @@ export default function Footer() {
 }
 
 function FooterColumn({ title, links }) {
+  const linkTarget = (link) => {
+    if (link === 'Home') return '/'
+    if (link === 'Bulk Queries') return '/bulk-queries'
+    return `/${link.toLowerCase()}`
+  }
+
   return (
     <div>
       <h3 className="mb-4 text-xs font-bold uppercase tracking-[0.18em]">{title}</h3>
       <div className="grid gap-3 text-sm text-charcoal/66">
         {links.map((link) => (
-          <Link key={link} to={link === 'Home' ? '/' : `/${link.toLowerCase()}`}>{link}</Link>
+          <Link key={link} to={linkTarget(link)}>{link}</Link>
         ))}
       </div>
     </div>

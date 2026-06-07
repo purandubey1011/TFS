@@ -1,5 +1,4 @@
-import { ArrowLeft, ArrowRight, Ruler, Scissors, SwatchBook, Truck, Wrench, Images } from 'lucide-react'
-import { useRef } from 'react'
+import { Ruler, Scissors, SwatchBook, Truck, Wrench, Images } from 'lucide-react'
 import AnimatedSection from '../components/AnimatedSection'
 import CategoryCard from '../components/CategoryCard'
 import CTAButton from '../components/CTAButton'
@@ -26,13 +25,7 @@ const offerBanners = [
 ]
 
 export default function HomePage() {
-  const styledScrollerRef = useRef(null)
-
-  const scrollStyledCards = (direction) => {
-    const scroller = styledScrollerRef.current
-    if (!scroller) return
-    scroller.scrollBy({ left: direction * Math.min(460, scroller.clientWidth * 0.82), behavior: 'smooth' })
-  }
+  const styledLoop = [...spaces, ...spaces]
 
   return (
     <>
@@ -47,35 +40,29 @@ export default function HomePage() {
       <BannerPhoto src={offerBanners[0]} />
 
       <AnimatedSection className="py-16">
-        <div className="container-pad flex items-end justify-between gap-6">
+        <div className="container-pad">
           <SectionTitle eyebrow="Room stories" title="See it styled" />
-          <div className="flex gap-2">
-            <button type="button" onClick={() => scrollStyledCards(-1)} className="grid h-11 w-11 place-items-center border hairline" aria-label="Scroll styled cards left">
-              <ArrowLeft size={16} />
-            </button>
-            <button type="button" onClick={() => scrollStyledCards(1)} className="grid h-11 w-11 place-items-center border hairline" aria-label="Scroll styled cards right">
-              <ArrowRight size={16} />
-            </button>
-          </div>
         </div>
-        <div ref={styledScrollerRef} className="mt-10 flex snap-x snap-mandatory gap-5 overflow-x-auto px-4 pb-4 scrollbar-hide">
-          {spaces.map((space) => (
-            <article key={space.name} className="group relative h-[440px] min-w-[78vw] snap-start overflow-hidden md:min-w-[420px]">
-              <video
-                className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
-                src={space.video}
-                poster={space.poster}
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="metadata"
-                onCanPlay={(event) => event.currentTarget.play().catch(() => {})}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/55 to-transparent" />
-              <h3 className="serif absolute bottom-6 left-6 text-4xl text-porcelain">{space.name}</h3>
-            </article>
-          ))}
+        <div className="see-styled-ticker mt-10 overflow-hidden px-4 pb-4">
+          <div className="see-styled-track flex w-max gap-5">
+            {styledLoop.map((space, index) => (
+              <article key={`${space.name}-${index}`} className="group relative h-[440px] w-[78vw] shrink-0 overflow-hidden md:w-[420px]">
+                <video
+                  className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+                  src={space.video}
+                  poster={space.poster}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  onCanPlay={(event) => event.currentTarget.play().catch(() => {})}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/55 to-transparent" />
+                <h3 className="serif absolute bottom-6 left-6 text-4xl text-porcelain">{space.name}</h3>
+              </article>
+            ))}
+          </div>
         </div>
       </AnimatedSection>
 
@@ -143,7 +130,7 @@ export default function HomePage() {
                 </div>
                 <h3 className="serif mt-5 min-h-[70px] text-3xl font-semibold leading-none">{post.title}</h3>
                 <p className="mt-3 line-clamp-3 text-sm leading-6 text-charcoal/64">{post.excerpt}</p>
-                <CTAButton to={`/blogs/${post.slug}`} variant="light" className="mt-auto w-fit px-4 py-2">Read Story</CTAButton>
+                <CTAButton to={`/blogs/${post.slug}`} variant="light" className="blog-read-link mt-auto w-fit border-0 px-0 py-0 text-[11px] hover:border-0">Read Story</CTAButton>
               </div>
             </article>
           ))}
